@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title  align="center">
+      我的
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <button ion-item (click)="gotoAvatar()">
+    <ion-avatar item-right>
+        <img src="assets/img/huitailang.jpeg">
+    </ion-avatar>
+    <ion-label>头像</ion-label>
+  </button>
+  <button ion-item (click)="gotoName()">
+    <ion-label>名字</ion-label>
+    <ion-label>{{this.name}}</ion-label>
+  </button>
+  <button ion-item (click)="gotoPassowrd()">
+    <ion-label >密码</ion-label>
+  </button>
+  <button ion-item (click)="gotoFavorites()">
+    <ion-label>我的收藏夹</ion-label>
+  </button>
+  <button ion-item (click)="gotoReflection()">
+    <ion-label>我的解题反思</ion-label>
+  </button>
+  <button ion-item (click)="gotoMistakenote()">
+    <ion-label>我的错题册</ion-label>
+  </button>
+  <button ion-item (click)="gotoDiagnosis()">
+    <ion-label>我的个人诊断</ion-label>
+  </button>
+  <button ion-item (click)="gotoAbout()">
+    <ion-label>关于优然学</ion-label>
+  </button>
+
+  <button ion-item (click)="gotoQuit()">
+    <ion-label>退出登陆</ion-label>
+  </button>
+
+</ion-content>

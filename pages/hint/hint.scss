@@ -1,0 +1,72 @@
+page-hint {
+      .selectBefore {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#FFFFFF;
+    border:1px solid #387ef5;
+    color:#387ef5;
+    /* 宽度和高度需要相等 */
+    }
+  .selectAfter {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#387ef5;
+    border:1px solid #387ef5;
+    color:#FFFFFF;
+    /* 宽度和高度需要相等 */
+    }
+    .selectAfterIsTrue {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#32db64;
+    border:1px solid #32db64;
+    color:#FFFFFF;
+    /* 宽度和高度需要相等 */
+    }
+
+  .selectAfterIsFalse {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#f53d3d;
+    border:1px solid #f53d3d;
+    color:#FFFFFF;
+    /* 宽度和高度需要相等 */
+    }
+
+    .fillBlankAnswerBefore {
+    height: 30px;
+    width: 40px;
+    background-color:#FFFFFF;
+    border:1px solid #387ef5;
+    color:#FFFFFF;
+    }
+
+    .fillBlankAnswerAfter {
+    height: 25px;
+    background-color:#FFFFFF;
+    border:1px solid #387ef5;
+    color:#387ef5;
+    }
+
+    .fillBlankIsTrue {
+    height: 25px;
+    background-color:#32db64;
+    border:1px solid #32db64;
+    color:#FFFFFF;
+
+    }
+
+  .fillBlankIsFalse {
+    height: 25px;
+    background-color:#f53d3d;
+    border:1px solid #f53d3d;
+    color:#FFFFFF;
+    /* 宽度和高度需要相等 */
+    }
+
+
+}

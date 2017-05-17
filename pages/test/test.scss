@@ -1,0 +1,90 @@
+page-test {
+    ion-slides { height: initial; }
+  ion-spinner * {
+    width: 28px;
+    height: 28px;
+    stroke: #444;
+    fill: #222;
+  }
+  $backdrop-color:#002559;//<-- I add in this.
+  $loading-ios-background:#32db64;
+  p {
+    text-align: center;
+    margin-bottom: 40px !important;
+  }
+
+    .selectBefore {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#FFFFFF;
+    border:1px solid #387ef5;
+    color:#387ef5;
+    /* 宽度和高度需要相等 */
+    }
+  .selectAfter {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#387ef5;
+    border:1px solid #387ef5;
+    color:#FFFFFF;
+    /* 宽度和高度需要相等 */
+    }
+    .selectAfterIsTrue {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#32db64;
+    border:1px solid #32db64;
+    color:#FFFFFF;
+    /* 宽度和高度需要相等 */
+    }
+
+  .selectAfterIsFalse {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#f53d3d;
+    border:1px solid #f53d3d;
+    color:#FFFFFF;
+    /* 宽度和高度需要相等 */
+    }
+
+    .fillBlankAnswerBefore {
+    height: 30px;
+    width: 70px;
+    background-color:#FFFFFF;
+    border:1px solid #387ef5;
+    color:#FFFFFF;
+    }
+
+    .fillBlankAnswerAfter {
+    height: 30px;
+    width: 70px;
+    background-color:#FFFFFF;
+    border:1px solid #387ef5;
+    color:#387ef5;
+    }
+
+    .fillBlankIsTrue {
+    height: 30px;
+    width: 70px;
+    background-color:#32db64;
+    border:1px solid #32db64;
+    color:#FFFFFF;
+
+    }
+
+  .fillBlankIsFalse {
+    height: 30px;
+    width: 70px;
+    background-color:#f53d3d;
+    border:1px solid #f53d3d;
+    color:#FFFFFF;
+    /* 宽度和高度需要相等 */
+    }
+
+
+}
+

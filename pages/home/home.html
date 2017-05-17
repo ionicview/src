@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title  align="center">书籍</ion-title>
+  </ion-navbar>
+  <ion-toolbar no-border-top right>
+    <ion-segment [(ngModel)]="bookShopType" primary>
+      <ion-segment-button value="myBook">我的</ion-segment-button>
+      <ion-segment-button value="topBookShop">排行榜</ion-segment-button>
+      <ion-segment-button value="bargainPriceBookShop">特价</ion-segment-button>
+      <ion-segment-button value="typeBookShop">分类</ion-segment-button>
+      <ion-segment-button value="recommendationBookShop">推荐</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<div [ngSwitch]="bookShopType" (on-swipe-left)="swipeToLeft()">
+<ion-list *ngSwitchCase="'myBook'" ngSelected="selected">
+<ion-grid>
+  <ion-row *ngFor="let row of myBookList">
+    <ion-col width-50 *ngFor="let book of row">
+      <img [src]="book.image"  (click)="goChapterList(book)">
+       <p  (click)="goChapterList(book)"> {{book.bookName}}</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!--
+      <div style="  display: flex; flex-wrap: wrap; align-items: stretch;">
+        <div *ngFor="let book of myBookList; let i = index" style="flex: 0 30 calc( 100% / 3 - 15px );">
+            <img [src]="book.image"  (click)="goChapterList(book)"/>
+            <p  (click)="goChapterList(book)"> {{book.bookName}}</p>
+        </div>
+      </div>
+
+      <ion-item-sliding *ngFor="let book of myBookList">
+        <ion-item (click)="goChapterList(book)">
+          <ion-row wrap text-wrap>
+            <ion-col width-20 text-wrap>
+              <img [src]="book.image" />
+            </ion-col>
+            <ion-col width-40 t>
+              <p> {{book.bookName}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-sliding>-->
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'topBookShop'">
+
+      <ion-item-sliding *ngFor="let book of topBookList">
+        <ion-item>
+          <ion-row wrap text-wrap>
+            <ion-col width-20 text-wrap>
+              <img [src]="book.image" />
+            </ion-col>
+            <ion-col width-40 t>
+              <p> {{book.bookName}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'bargainPriceBookShop'">
+      <ion-item-sliding *ngFor="let book of bargainPriceBookList">
+        <ion-item>
+          <ion-row wrap text-wrap>
+            <ion-col width-20 text-wrap>
+              <img [src]="book.image" />
+            </ion-col>
+            <ion-col width-40 t>
+              <p> {{book.bookName}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'typeBookShop'">
+      <ion-item-sliding *ngFor="let book of typeBookList">
+        <ion-item>
+          <ion-row wrap text-wrap>
+            <ion-col width-20 text-wrap>
+              <img [src]="book.image" />
+            </ion-col>
+            <ion-col width-40 t>
+              <p> {{book.bookName}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'recommendationBookShop'">
+      <ion-item-sliding *ngFor="let book of recommendationBookList">
+        <ion-item>
+          <ion-row wrap text-wrap>
+            <ion-col width-20 text-wrap>
+              <img [src]="book.image" />
+            </ion-col>
+            <ion-col width-40 t>
+              <p> {{book.bookName}}</p>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+
+</ion-content>

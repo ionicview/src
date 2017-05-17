@@ -1,0 +1,24 @@
+<!--
+  Generated template for the Discover page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title  align="center">
+      发现
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let top of topList">
+    <ion-item (click)="goTopListpage(top)">
+      {{ top.topName }}
+      <ion-icon ios="ios-arrow-forward" md="md-arrow-forward" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

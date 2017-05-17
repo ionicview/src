@@ -1,0 +1,23 @@
+page-choice-questions {
+  .div_font{
+    font-size:18px;
+  }
+
+  .finishFlagisNo {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px; 
+    background-color:#387ef5;
+    /* 宽度和高度需要相等 */
+    }
+
+  .finishFlagisYes {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color:#f4f4f4;
+    /* 宽度和高度需要相等 */
+    }
+
+
+}

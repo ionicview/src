@@ -1,0 +1,65 @@
+<!--
+  Generated template for the Reflection page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>解题反思</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-row>
+    <ion-col>
+      <ion-chip>
+        <ion-icon name="logo-twitch" color="primary"></ion-icon>
+        <ion-label >发布解题反思 {{this.reflectioncount}}</ion-label>
+      </ion-chip>
+    </ion-col>
+    <ion-col>
+      <ion-chip right>
+        <ion-icon name="ios-thumbs-up" color="primary"></ion-icon>
+        <ion-label>被点赞 {{this.likescount}}</ion-label>
+      </ion-chip>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-list *ngIf="this.reflectioncount > 0">
+
+      <ion-card *ngFor="let r of reflections">
+       
+          
+        
+        <ion-card-content>
+          <ion-item text-wrap>
+            <p  (click)="goTest()"  [MathJax]="r.question">{{r.question}}</p>
+          </ion-item>
+          <ion-item text-wrap>
+            <p>{{r.reflection}}</p>
+          </ion-item>
+          <ion-grid>
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-left clear small>
+                <ion-icon name="thumbs-up"></ion-icon>
+                <div>{{r.likes}}</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <div class="abc"><ion-icon name="md-calendar"></ion-icon>{{r.datetime}}</div>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+  </ion-list>
+
+
+</ion-content>

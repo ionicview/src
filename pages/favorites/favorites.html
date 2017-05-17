@@ -1,0 +1,88 @@
+<!--
+  Generated template for the Favorites page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-icon name="star"></ion-icon>我的收藏夹</ion-title>
+  </ion-navbar>
+  <ion-toolbar no-border-top right>
+    <ion-segment [(ngModel)]="sortType" color="primary">
+      <ion-segment-button value="sortbytime">全部({{this.favoriteList.length}})</ion-segment-button>
+      <ion-segment-button value="sortbychapter">按章节查看</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div [ngSwitch]="sortType" >
+    <ion-list *ngSwitchCase="'sortbytime'">
+        <ion-item *ngFor="let f of favoriteList">
+
+          <ion-card>
+            <ion-card-header>
+              <p><ion-icon name="md-calendar"></ion-icon>{{f.datetime}}</p>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-item (click)="goTest()">
+                <p [MathJax]="f.question" text-wrap [class.my-class]="isClassVisible">{{ f.question }}</p>
+              </ion-item>
+              <ion-row>
+                <ion-col>
+                  <p>{{f.chapter + f.section}}</p>
+                </ion-col>
+                <ion-col>
+                  <ion-fab right bottom >
+                    <button ion-fab color="light" mini><ion-icon name="md-text"></ion-icon></button>
+                    <ion-fab-list side="left">
+                      <button ion-fab mini>置顶</button>
+                      <button ion-fab mini>删除</button>
+                    </ion-fab-list>
+                  </ion-fab>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>            
+
+        </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'sortbychapter'">
+      <ion-item *ngFor="let chapter of chapters">
+        <span (click)="toggle(chapter)" >
+          <div>
+            <ion-row text-wrap>
+              <ion-col width-80 text-wrap>
+                <ion-icon *ngIf="chapters.length  > 0 && !chapter.isShow " name="ios-arrow-dropright"></ion-icon>
+                <ion-icon *ngIf="chapters.length  > 0 && chapter.isShow"  name="ios-arrow-dropdown"></ion-icon>
+                {{ chapter.chapter }}
+              </ion-col>
+              <ion-col width-10 text-right>
+                {{ chapter.questions}}
+              </ion-col>
+            </ion-row>
+          </div>
+        </span>
+
+        <ion-list *ngIf="chapter.isShow">
+          <ion-item *ngFor="let section of chapter.sections">
+            <ion-row wrap text-wrap>
+              <ion-col width-80 text-wrap>
+                <p (click)="goTest()">{{ section.section }}</p>
+              </ion-col>
+              <ion-col width-10 text-right>
+                {{ section.questions.length}}
+              </ion-col>
+            </ion-row>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+    </ion-list>
+
+  </div>
+</ion-content>

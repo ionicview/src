@@ -1,0 +1,99 @@
+<!--
+  Generated template for the Hint page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title  align="center">
+      提示
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-scroll scrollY="true" style="height:140vh;">
+ <div [ngSwitch]="hintIndex" *ngFor="let questionHint of questionHintList">
+    <ion-list *ngSwitchCase="001" ngSelected="selected">
+
+      <ion-list *ngFor="let hintQuestion of questionHint.hintQuestions;let i = index">
+        <p *ngIf="questionHint.hintCount > i" >{{hintQuestion.questionName}}</p>
+        <div *ngIf="questionHint.hintCount > i" style='font-size:15px;text-align:left;' [MathJax]="hintQuestion.question">{{hintQuestion.question}}</div>
+        <img src={{hintQuestion.img}} alt="" *ngIf="questionHint.hintCount > i">
+        
+        <br>
+        <ion-grid style='font-size:15px' align="left" *ngIf="questionHint.hintCount > i">
+            
+        <ion-row text-wrap >
+            <button item-left [disabled]="hintQuestion.showFlag"
+            (click)="selectClickEvent(hintQuestion,hintQuestion.selectAId)"
+            [class]="hintQuestion.selectAStatus">
+            {{ hintQuestion.selectAId }}
+            </button>&nbsp;&nbsp;
+            <div item-left [MathJax]="hintQuestion.selectAContent">{{ hintQuestion.selectAContent }}</div>
+        </ion-row>
+        <br>
+
+        <ion-row text-wrap >
+            <button item-left [disabled]="hintQuestion.showFlag"
+            (click)="selectClickEvent(hintQuestion,hintQuestion.selectBId)"
+            [class]="hintQuestion.selectBStatus">
+            {{ hintQuestion.selectBId }}
+            </button>&nbsp;&nbsp;
+            <div item-left [MathJax]="hintQuestion.selectBContent">{{ hintQuestion.selectBContent }}</div>
+        </ion-row>
+        <br>
+
+        <ion-row text-wrap >
+            <button item-left [disabled]="hintQuestion.showFlag"
+            (click)="selectClickEvent(hintQuestion,hintQuestion.selectCId)"
+            [class]="hintQuestion.selectCStatus">
+            {{ hintQuestion.selectCId }}
+            </button>&nbsp;&nbsp;
+            <div item-left [MathJax]="hintQuestion.selectCContent">{{ hintQuestion.selectCContent }}</div>
+        </ion-row>
+        <br>
+
+        <ion-row text-wrap >
+            <button item-left [disabled]="hintQuestion.showFlag"
+            (click)="selectClickEvent(hintQuestion,hintQuestion.selectDId)"
+            [class]="hintQuestion.selectDStatus">
+            {{ hintQuestion.selectDId }}
+            </button>&nbsp;&nbsp;
+            <div item-left [MathJax]="hintQuestion.selectDContent">{{ hintQuestion.selectDContent }}</div>
+        </ion-row>
+        <br>
+
+        <ion-row >
+            <ion-col>
+                <ion-fab right  >
+                    <button ion-fab color="light" mini><ion-icon name="md-text"></ion-icon></button>
+                    <ion-fab-list side="left">
+                    <button ion-fab mini style='font-size:10px' (click)="goAnswer(hintQuestion)">答案</button>
+                    <button ion-fab mini style='font-size:10px' >我会</button>
+                    <button ion-fab mini style='font-size:10px' >赞</button>
+                    </ion-fab-list>
+                </ion-fab>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <p> </p>
+        </ion-row>
+      </ion-grid>
+
+  <button ion-button  clear small item-left
+  (click)="hintCountEvent(questionHint)"
+  [disabled]="questionHint.hintQuestions.length==questionHint.hintCount"
+  *ngIf="questionHint.hintQuestions.length==i+1">
+  下一个提示({{questionHint.hintCount}}/{{questionHint.hintQuestions.length}})
+  </button>
+    </ion-list>
+  </ion-list>
+
+  </div>
+</ion-scroll>
+</ion-content>
