@@ -18,8 +18,8 @@
 
          <ion-row wrap >
            <ion-col col-80>
-             <ion-icon *ngIf="chapter.sections.length  > 0 && !chapter.showFlag " name="ios-arrow-dropright"></ion-icon>
-             <ion-icon *ngIf="chapter.sections.length  > 0 && chapter.showFlag "  name="ios-arrow-dropdown"></ion-icon>
+             <ion-icon *ngIf="chapter.sectionList.length  > 0 && !chapter.showFlag " name="ios-arrow-dropright"></ion-icon>
+             <ion-icon *ngIf="chapter.sectionList.length  > 0 && chapter.showFlag "  name="ios-arrow-dropdown"></ion-icon>
              {{ chapter.chapterName }}
            </ion-col>
 
@@ -31,7 +31,7 @@
          </span>
 
       <ion-list *ngIf="chapter.showFlag" no-lines>
-        <ion-item *ngFor="let section of chapter.sections" (click)="goChoiceQuestions(section)">
+        <ion-item *ngFor="let section of chapter.sectionList" (click)="goChoiceQuestions(section)">
           <ion-row wrap >
             <ion-col col-80>
               <p>{{ section.sectionName }}</p>

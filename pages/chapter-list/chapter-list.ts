@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChoiceQuestions } from '../choice-questions/choice-questions';
+import {MyBooksService} from '../../service/MyBooksService';
 /**
  * Generated class for the ChapterList page.
  *
@@ -14,12 +15,13 @@ import { ChoiceQuestions } from '../choice-questions/choice-questions';
 })
 export class ChapterList {
 treeList:any;
-bookId : String ;
-bookName : String ;
+materialsId : String ;
+materialsName : String ;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  this.bookId = navParams.get('bookId');
-  this.bookName = navParams.get('bookName');
+  constructor(public navCtrl: NavController, public navParams: NavParams,public myBooksService:MyBooksService) {
+  this.materialsId = navParams.get('materialsId');
+  this.materialsName = navParams.get('materialsName');
+  /*
   this.treeList = [
     {
       chapterId: 1,
@@ -81,7 +83,21 @@ bookName : String ;
       ]
     }
   ];
-  }
+*/  
+}
+
+ngOnInit(){
+	this.myBooksService.getChapter(this.materialsId).subscribe(
+		data => {
+			this.treeList = data; 
+			console.log(this.treeList);
+		},
+			err => {
+			console.log(err);
+		},
+		() => {}
+	);
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChapterList');
