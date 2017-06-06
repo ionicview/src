@@ -15,6 +15,8 @@ import { Diagnosis } from '../pages/diagnosis/diagnosis';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { HttpModule } from '@angular/http';
+
 
 import { ChoiceQuestions } from '../pages/choice-questions/choice-questions';
 import { Test} from '../pages/test/test';
@@ -38,6 +40,7 @@ import { MathJaxDirective } from '../directives/Mathjax.directive';
 import { AuthService } from './../service/auth-service';
 
 import { QuestionService } from '../service/QuestionService';
+import { MyBooksService } from '../service/MyBooksService';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,7 @@ import { QuestionService } from '../service/QuestionService';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -103,6 +107,7 @@ import { QuestionService } from '../service/QuestionService';
     SplashScreen,
     AuthService,
     QuestionService,
+    MyBooksService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
