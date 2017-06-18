@@ -79,17 +79,10 @@
                 <br>
                 <ion-row>
                     <ion-col>
-                        <ion-fab right  >
-                            <button ion-fab color="light" mini><ion-icon name="md-text"></ion-icon></button>
-                            <ion-fab-list side="left">
-                            <button ion-fab mini style='font-size:10px' (click)="autoCorrecting(currentQuestion)">确定</button>
-                            <button ion-fab mini style='font-size:10px' (click)="goAnswer(currentQuestion)">答案</button>
-                            <button ion-fab mini style='font-size:10px' (click)="goSolutionReflect(currentQuestion)">
-                                解题反思
-                            </button>
-                            <button ion-fab mini style='font-size:10px' (click)="goHint(currentQuestion)">提示</button>
-                            </ion-fab-list>
-                        </ion-fab>
+                        <button ion-button round (click)="autoCorrecting(currentQuestion)">确定</button>
+                        <button ion-button round (click)="goAnswer(currentQuestion)">答案</button>
+                        <button ion-button round (click)="goSolutionReflect(currentQuestion)">解题反思</button>
+                        <button ion-button round (click)="goHint(currentQuestion)">提示</button>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -109,37 +102,28 @@
                 <img src={{question.img}} alt="" border="1">
               </ion-row>
               <ion-row>
-                <ion-fab bottom right >
-                    <button ion-fab color="light" mini><ion-icon name="md-text"></ion-icon></button>
-                    <ion-fab-list side="left">
-                        <button ion-fab mini style='font-size:10px' (click)="autoCorrecting(currentQuestion)">确定</button>
-                        <button ion-fab mini style='font-size:10px' (click)="goAnswer(currentQuestion)">答案</button>
-                        <button ion-fab mini style='font-size:10px' (click)="goSolutionReflect(currentQuestion)">解题反思</button>
-                        <button ion-fab mini style='font-size:10px' (click)="goHint(currentQuestion)">提示</button>
-                    </ion-fab-list>
-                </ion-fab>
+                <button ion-button round (click)="autoCorrecting(currentQuestion)">确定</button>
+                <button ion-button round (click)="goAnswer(currentQuestion)">答案</button>
+                <button ion-button round (click)="goSolutionReflect(currentQuestion)">解题反思</button>
+                <button ion-button round (click)="goHint(currentQuestion)">提示</button>
             </ion-row>
             </ion-grid>
          </div>
 
         <div *ngIf="question.questionType =='shortAnswer'">
-             <ion-grid style='font-size:15px' align="left" >
-              <ion-row>
+            <ion-grid style='font-size:15px' align="left" >
+                <ion-row>
                 <ion-col col-10 >
                 <label [MathJax]="question.question" >{{question.question}}</label>
                 </ion-col>
-
-              </ion-row>
+            </ion-row>
             <img src={{question.img}} alt="" border="1">
             <br><br><br><br>
-                <ion-fab bottom right >
-                    <button ion-fab color="light" mini><ion-icon name="md-text"></ion-icon></button>
-                    <ion-fab-list side="left">
-                        <button ion-fab mini style='font-size:10px' (click)="goAnswer(currentQuestion)">答案</button>
-                        <button ion-fab mini style='font-size:10px' (click)="goSolutionReflect(currentQuestion)">解题反思</button>
-                        <button ion-fab mini style='font-size:10px' (click)="goHint(currentQuestion)">提示</button>
-                    </ion-fab-list>
-                </ion-fab>
+                <ion-row>
+                    <button ion-button round  (click)="goAnswer(currentQuestion)">答案</button>
+                    <button ion-button round  (click)="goSolutionReflect(currentQuestion)">解题反思</button>
+                    <button ion-button round  (click)="goHint(currentQuestion)">提示</button>
+                </ion-row>
             </ion-grid>
          </div>
 <!--

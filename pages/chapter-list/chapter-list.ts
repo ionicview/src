@@ -15,12 +15,12 @@ import {MyBooksService} from '../../service/MyBooksService';
 })
 export class ChapterList {
 treeList:any;
-materialsId : String ;
-materialsName : String ;
+bookId : String ;
+bookName : String ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public myBooksService:MyBooksService) {
-  this.materialsId = navParams.get('materialsId');
-  this.materialsName = navParams.get('materialsName');
+  this.bookId = navParams.get('bookId');
+  this.bookName = navParams.get('bookName');
   /*
   this.treeList = [
     {
@@ -87,7 +87,7 @@ materialsName : String ;
 }
 
 ngOnInit(){
-	this.myBooksService.getChapter(this.materialsId).subscribe(
+	this.myBooksService.getChapter(this.bookId).subscribe(
 		data => {
 			this.treeList = data; 
 			console.log(this.treeList);
