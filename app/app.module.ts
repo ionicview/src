@@ -42,6 +42,8 @@ import { AuthService } from './../service/auth-service';
 import { QuestionService } from '../service/QuestionService';
 import { MyBooksService } from '../service/MyBooksService';
 
+import {EnvironmentsModule} from './environment-variables/environment-variables.module'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -73,7 +75,8 @@ import { MyBooksService } from '../service/MyBooksService';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    EnvironmentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

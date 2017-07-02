@@ -83,6 +83,7 @@ ngOnInit() {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Test');
   }
+  
 presentLoading() {
 let loader = this.loadingCtrl.create({
     content: '努力加载中...',

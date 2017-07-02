@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component , Inject} from '@angular/core';
 import { NavController, NavParams,AlertController } from 'ionic-angular';
 import { ChapterList } from '../chapter-list/chapter-list';
 import {MyBooksService} from '../../service/MyBooksService';
+import { EnvVariables } from '../../app/environment-variables/environment-variables.token';
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,7 @@ export class HomePage {
 //购买的书籍一览变量声明
 myBookList: any ;
 allBooks:Array<any>;
-constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public myBooksService:MyBooksService) {
+constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public myBooksService:MyBooksService,@Inject(EnvVariables) public envVariables) {
 }
 
 //获取购买图书

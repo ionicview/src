@@ -9,7 +9,7 @@
 <ion-grid>
   <ion-row *ngFor="let row of allBooks">
     <ion-col width-50 *ngFor="let book of row">
-      <img [src]="book.coverImgPath"  (click)="goChapterList(book)">
+      <img src="{{envVariables.imgBaseUrl}}/{{book.coverImgPath}}"  (click)="goChapterList(book)">
       <p  (click)="goChapterList(book)"> {{book.bookName}}</p>
     </ion-col>
   </ion-row>

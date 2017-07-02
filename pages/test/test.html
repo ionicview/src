@@ -38,8 +38,9 @@
 
          <div *ngIf="question.questionType =='singleChoice'">
             <div style='font-size:15px;text-align:left;' [MathJax]="question.question">{{question.question}}</div>
-            <img src={{question.img}} alt="" border="5" width="200px" height="10px">
-
+            <div *ngFor="let img of question.img">
+                <img src={{img}} alt="" border="5" width="200px" height="10px">
+            </div>
          <ion-grid style='font-size:15px' align="left">
               <ion-row>
                         <button item-left [disabled]="question.showFlag"
