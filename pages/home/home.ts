@@ -12,6 +12,7 @@ export class HomePage {
 //购买的书籍一览变量声明
 myBookList: any ;
 allBooks:Array<any>;
+img1:string;
 constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public myBooksService:MyBooksService,@Inject(EnvVariables) public envVariables) {
 }
 
@@ -32,6 +33,7 @@ searchBooks() {
 
 ngOnInit(){
 	this.searchBooks()
+	this.img1 = this.myBooksService.img1;
 }
 
 //跳转到章一览画面

@@ -55,7 +55,7 @@ export class QuestionService{
             questionName: '单选题1',
             questionId: '1',
             question: ' 如图，$\\triangle ABC$中，$\\angle A= 36^{\\circ}$，$\\angle B= 72^{\\circ}$，$\\angle ACB$的平分线交$AB$于$D$，则图中共有等腰三角形(　)',
-            img:['assets/img/test/chapter1/53_bsd_8x_p2-5_t.svg','assets/img/test/chapter1/53_bsd_8x_p2-5_t.svg'],
+            img:['assets/img/test/chapter1/53_bsd_8x_p2-5_t.svg','http://localhost:8100/youranxue/image/imageDisplay/books_cover_mathTest.svg'],
             questionType: 'singleChoice',
             selectAId: 'A',
             selectAContent: '0个',
