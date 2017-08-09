@@ -13,6 +13,7 @@ export class HomePage {
 myBookList: any ;
 allBooks:Array<any>;
 img1:string;
+bottonStr:string;
 constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public myBooksService:MyBooksService,@Inject(EnvVariables) public envVariables) {
 }
 
@@ -34,6 +35,7 @@ searchBooks() {
 ngOnInit(){
 	this.searchBooks()
 	this.img1 = this.myBooksService.img1;
+	this.bottonStr ="<button block >Test Button</button>"
 }
 
 //跳转到章一览画面
