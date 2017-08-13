@@ -13,12 +13,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'answer.html',
 })
 export class Answer {
-question:any;
+  question: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.question = navParams.get('question');
   }
-
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad Answer');
   }

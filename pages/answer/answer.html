@@ -7,15 +7,33 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title  align="center">
+    <ion-title align="center">
       答案
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-<p>正确答案</p>
-<img src={{question.imgAnswer}} alt="">
-<p ng-bind [MathJax]="question.answer">{{question.answer}}</p>
+  <p>答案:</p>
+  <!-- <img src={{question.imgAnswer}} alt=""> -->
+  <div *ngIf="question.questionType == 'singleChoice'">
+    <ion-grid style='font-size:15px' align="left">
+      <img src="{{question.answerImg}}">
+      <ion-list *ngFor="let answer of question.answerList">
+        <ion-row>
+          <div item-left *ngIf="answer.isRightAnswer=='true' then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock>〇&nbsp;&nbsp;</ng-template>
+          <ng-template #elseBlock>✖ &nbsp;&nbsp;</ng-template>
+          <div>{{answer.id}}&nbsp;.&nbsp;</div>
+          <div item-left [MathJax]="answer.explan"> {{answer.explan}} </div>
+        </ion-row>
+      </ion-list>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="question.questionType == 'fillBlank' || question.questionType == 'shortAnswer'">
+    <img src="{{question.answerImg}}">
+    <div item-left [MathJax]="question.answer"> {{question.answer}} </div>
+  </div>
+
 </ion-content>

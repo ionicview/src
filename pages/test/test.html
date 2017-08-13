@@ -35,68 +35,38 @@
 
    <ion-slides (ionSlideDidChange)="slideChanged()">
         <ion-slide *ngFor="let question of questionList">
-
-         <div *ngIf="question.questionType =='singleChoice'">
+        <div *ngIf="question.questionType =='singleChoice'">
             <div style='font-size:15px;text-align:left;' [MathJax]="question.question">{{question.question}}</div>
             <div *ngFor="let img of question.img">
                 <img src={{img}} alt="" border="5" width="200px" height="10px">
             </div>
-         <ion-grid style='font-size:15px' align="left">
-              <ion-row>
-                        <button item-left [disabled]="question.showFlag"
-                        (click)="selectClickEvent(question,question.selectAId)"
-                        [class]="question.selectAStatus">
-                        {{ question.selectAId }}
+            <ion-grid style='font-size:15px' align="left">
+                <ion-list *ngFor="let answer of question.answerList; let i = index">
+                    <ion-row>
+                        <button item-left [disabled]="question.isDisabled" 
+                            (click)="selectClickEvent(question.answerList,answer)" [class]="(answer.status==undefined) ? 'selectBefore':answer.status">
+                            {{answer.id}}
                         </button>&nbsp;&nbsp;
-                        <div  item-left [MathJax]="question.selectAContent">{{ question.selectAContent }}</div>
-                </ion-row>
-                <br>
-                <ion-row>
-                        <button item-left [disabled]="question.showFlag"
-                        (click)="selectClickEvent(question,question.selectBId)"
-                        [class]="question.selectBStatus">
-                        {{ question.selectBId }}
-                        </button>&nbsp;&nbsp;
-                          <div item-left [MathJax]="question.selectBContent">{{ question.selectBContent }}</div>
-                </ion-row>
-                <br>
-                <ion-row>
-                        <button  item-left [disabled]="question.showFlag"
-                        (click)="selectClickEvent(question,question.selectCId)"
-                        [class]="question.selectCStatus">
-                        {{ question.selectCId }}
-                        </button>&nbsp;&nbsp;
-                          <div item-left [MathJax]="question.selectCContent">{{ question.selectCContent }}</div>
-                </ion-row>
-                <br>
-                <ion-row>
-                        <button item-left [disabled]="question.showFlag"
-                        (click)="selectClickEvent(question,question.selectDId)"
-                        [class]="question.selectDStatus">
-                        {{ question.selectDId }}
-                        </button>&nbsp;&nbsp;
-                       <div item-left [MathJax]="question.selectDContent">{{ question.selectDContent }}</div>
-                </ion-row>
-                <br>
-                <ion-row>
-                    <ion-col>
-                        <button ion-button round (click)="autoCorrecting(currentQuestion)">确定</button>
-                        <button ion-button round (click)="goAnswer(currentQuestion)">答案</button>
-                        <button ion-button round (click)="goSolutionReflect(currentQuestion)">解题反思</button>
-                        <button ion-button round (click)="goHint(currentQuestion)">提示</button>
-                    </ion-col>
-                </ion-row>
-                <ion-row>
-                    <p> </p>
-                </ion-row>
-          </ion-grid>
-         </div>
+                        <div item-left [MathJax]="answer.content">{{answer.content}}</div>
+                    </ion-row>
+                    <br>
+                </ion-list>
+            </ion-grid>
+            <ion-row>
+                <button ion-button round (click)="autoCorrecting(currentQuestion)">确定</button>
+                <button ion-button round (click)="goAnswer(currentQuestion)">答案</button>
+                <button ion-button round (click)="goSolutionReflect(currentQuestion)">解题反思</button>
+                <button ion-button round (click)="goHint(currentQuestion)">提示</button>
+            </ion-row>
+          <br>
+        </div>
 
          <div *ngIf="question.questionType =='fillBlank'">
              <ion-grid style='font-size:15px' align="left" >
               <ion-row>
                 <ion-col col-10 >
-                <label [MathJax]="question.question" >{{question.question}}</label><button [class]="question.fillBlankStatus" (click)="fillBlankPrompt()">{{question.filledBlank1}}</button>
+                <label [MathJax]="question.question" >{{question.question}}</label>
+                <button [disabled]="question.isDisabled" [class]="question.fillBlankStatus" (click)="fillBlankPrompt()">{{question.filledBlank1}}</button>
                 </ion-col>
               </ion-row>
               <ion-row>
