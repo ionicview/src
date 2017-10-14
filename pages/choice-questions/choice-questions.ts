@@ -33,12 +33,12 @@ export class ChoiceQuestions {
     this.treeList = [
       {
         questionLevleId: 1,
-        questionLevleName: '基础闯关全练',
+        questionLevleName: '1.选择题',
         showFlag: true,
         knowledges : [
           {
             knowledgeId: 1,
-            knowledgeName: '知识点一 菱形的定义',
+            knowledgeName: '',
             showFlag: false,
             questions:[
                          {
@@ -55,7 +55,7 @@ export class ChoiceQuestions {
           },
           {
             knowledgeId: 2,
-            knowledgeName: '知识点二 菱形的性质',
+            knowledgeName: '',
             showFlag: false,
             questions:[
                          {
@@ -74,12 +74,12 @@ export class ChoiceQuestions {
       },
       {
         questionLevleId: 1,
-        questionLevleName: '三年模拟全练',
+        questionLevleName: '2.填空题',
         showFlag: true,
         knowledges : [
           {
             knowledgeId: 1,
-            knowledgeName: '知识点一 矩形的定义',
+            knowledgeName: '',
             showFlag: false,
             questions:[
                          {
@@ -96,7 +96,7 @@ export class ChoiceQuestions {
           },
           {
             knowledgeId: 2,
-            knowledgeName: '知识点二 矩形的性质',
+            knowledgeName: '',
             showFlag: false,
             questions:[
                          {
@@ -113,7 +113,7 @@ export class ChoiceQuestions {
           },
           {
             knowledgeId: 3,
-            knowledgeName: '知识点三 函数',
+            knowledgeName: '',
             showFlag: false,
             questions:[
                          {

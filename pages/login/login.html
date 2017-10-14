@@ -7,11 +7,11 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title  align="center">
+    <ion-title align="center">
       登录
     </ion-title>
-        <ion-buttons end>
-      <button ion-button icon-only (click)="createAccount()">
+    <ion-buttons end>
+      <button ion-button icon-only (click)="signup()">
        注册
       </button>
     </ion-buttons>
@@ -21,27 +21,32 @@
 
 
 <ion-content class="login-content" padding>
-  <ion-row class="logo-row">
+  <form #form="ngForm" (ngSubmit)="login(form.value)" novalidate>
+    <ion-row class="logo-row">
+      <ion-col width-67>
+        <img src="assets/img/youranxue.png" />
+      </ion-col>
 
-    <ion-col width-67>
-      <img src="assets/img/youranxue.png"/>
-    </ion-col>
-
-  </ion-row>
-  <div class="login-box">
-    <form  #registerForm="ngForm">
+    </ion-row>
+    <div class="login-box">
       <ion-row>
         <ion-col>
           <ion-list inset>
 
             <ion-item>
               <ion-label color="primary">用户名:</ion-label>
-              <ion-input type="text" placeholder="wg" value="wg" name="userId" [(ngModel)]="registerCredentials.userId" required>wg</ion-input>
+              <ion-input [(ngModel)]="form.firstname" type="text" name="username" required #username="ngModel"  value="admin"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="username.errors?.required && username.dirty">
+              请输入用户名
             </ion-item>
 
             <ion-item>
               <ion-label color="primary">密　码:</ion-label>
-              <ion-input type="password" placeholder="wg" value="wg" name="password" [(ngModel)]="registerCredentials.password" required>wg</ion-input>
+              <ion-input type="password" name="password" ngModel required #password="ngModel" [class.invalid]="password.errors && password.dirty" ng-value="admin">admin</ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="password.errors?.required && password.dirty">
+              请输入密码
             </ion-item>
 
           </ion-list>
@@ -50,25 +55,9 @@
 
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full (click)="login()" [disabled]="!registerForm.form.valid">登录</button>
+          <button ion-button class="submit-btn" block type="submit" [disabled]="!form.valid">登录</button>
         </ion-col>
       </ion-row>
-
-
-    </form>
-  </div>
-  <br>
-  <hr>
-  <p align="center">社交账号登录</p>
-    <ion-row>
-        <ion-col>
-           <img src="assets/img/weibo.ico" (click)="login()"/>
-        </ion-col>
-        <ion-col>
-           <img src="assets/img/qq.ico" (click)="login()"/>
-        </ion-col>
-        <ion-col>
-           <img src="assets/img/weixin.ico" style="width:48px;height:48px;" (click)="login()"/>
-        </ion-col>
-    </ion-row>
+    </div>
+  </form>
 </ion-content>

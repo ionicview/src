@@ -15,7 +15,7 @@ import { Diagnosis } from '../pages/diagnosis/diagnosis';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule, RequestOptions } from '@angular/http';
 
 
 import { ChoiceQuestions } from '../pages/choice-questions/choice-questions';
@@ -31,7 +31,10 @@ import { ChapterList} from '../pages/chapter-list/chapter-list';
 import { Answer} from '../pages/answer/answer';
 import { Hint} from '../pages/hint/hint';
 
-
+import {SignupPage} from "../pages/signup/signup";
+import {CustomFormsModule} from 'ng2-validation'
+import {Storage, IonicStorageModule} from "@ionic/storage";
+import {JwtHelper, AuthConfig, AuthHttp} from "angular2-jwt";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,6 +46,15 @@ import { QuestionService } from '../service/QuestionService';
 import { MyBooksService } from '../service/MyBooksService';
 
 import {EnvironmentsModule} from './environment-variables/environment-variables.module'
+
+import {AuthProvider} from "../providers/auth/auth";
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
+  const authConfig = new AuthConfig({
+    tokenGetter: (() => storage.get('jwt')),
+  });
+  return new AuthHttp(authConfig, http, options);
+}
 
 @NgModule({
   declarations: [
@@ -64,6 +76,7 @@ import {EnvironmentsModule} from './environment-variables/environment-variables.
     TopList,
     SolutionReflect,
     Login,
+    SignupPage,
     Register,
     BookShop,
     ChapterList,
@@ -76,7 +89,12 @@ import {EnvironmentsModule} from './environment-variables/environment-variables.
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    EnvironmentsModule
+    EnvironmentsModule,
+    IonicStorageModule.forRoot({
+      name: 'myapp',
+      driverOrder: ['sqlite', 'indexeddb', 'websql']
+    }),
+    CustomFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -98,6 +116,7 @@ import {EnvironmentsModule} from './environment-variables/environment-variables.
     SolutionReflect,
     Start,
     Login,
+    SignupPage,
     Register,
     BookShop,
     ChapterList,
@@ -111,7 +130,14 @@ import {EnvironmentsModule} from './environment-variables/environment-variables.
     AuthService,
     QuestionService,
     MyBooksService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider,
+    JwtHelper, {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions, Storage]
+    }
   ]
+  
 })
 export class AppModule {}

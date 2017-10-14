@@ -38,7 +38,7 @@
         <div *ngIf="question.questionType =='singleChoice'">
             <div style='font-size:15px;text-align:left;' [MathJax]="question.question">{{question.question}}</div>
             <div *ngFor="let img of question.img">
-                <img src={{img}} alt="" border="5" width="200px" height="10px">
+                <img src="{{envVariables.imgBaseUrl}}/{{img}}" border="5" width="200px" height="10px">
             </div>
             <ion-grid style='font-size:15px' align="left">
                 <ion-list *ngFor="let answer of question.answerList; let i = index">

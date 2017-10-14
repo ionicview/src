@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage,NavParams } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, Loading, IonicPage,NavParams,ToastController } from 'ionic-angular';
 import { AuthService } from '../../service/auth-service';
 import { TabsPage } from '../tabs/tabs';
 import { Register } from '../register/register';
+import { AuthProvider } from "../../providers/auth/auth";
+import { SignupPage } from "../signup/signup";
+
 /**
  * Generated class for the Login page.
  *
@@ -16,9 +19,15 @@ import { Register } from '../register/register';
 })
 export class Login {
   loading: Loading;
+  message: string;
   registerCredentials = { userId: '', password: '' };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private auth: AuthService,private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private auth: AuthService,private alertCtrl: AlertController, 
+    private loadingCtrl: LoadingController,
+    private readonly authProvider: AuthProvider,
+    private readonly toastCtrl: ToastController,
+  ) {
 //this.registerCredentials.userId = "wg";
 //this.registerCredentials.password= "wg";
 }
@@ -32,25 +41,38 @@ export class Login {
     this.navCtrl.push(Register);
   }
 
-  public login() {
-    this.showLoading();
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
+  login(value: any) {
+    let loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      content: 'Logging in ...'
+    });
 
-        if (allowed) {
+    loading.present();
 
-          this.navCtrl.push(TabsPage);
-        } else {
-          console.log('aaaa');
-          this.loading.dismiss();
-          this.showError("登录失败！");
-          console.log('bbbb');
-        }
-      },
-      error => {
-        this.showError(error);
-      });
+    this.authProvider
+      .login(value)
+      .finally(() => loading.dismiss())
+      .subscribe(
+      () => { },
+      err => this.handleError(err));
   }
+  handleError(error: any) {
+    let message: string;
+    if (error.status && error.status === 401) {
+      message = 'Login failed';
+    }
+    else {
+      message = `Unexpected error: ${error.statusText}`;
+    }
 
+    const toast = this.toastCtrl.create({
+      message,
+      duration: 5000,
+      position: 'bottom'
+    });
+
+    toast.present();
+  }
   showLoading() {
     this.loading = this.loadingCtrl.create({
       content: '登陆中...',
@@ -72,9 +94,10 @@ export class Login {
       buttons: ['知道了']
     });
 
-    alert.present(prompt);
-
   }
 
+  signup() {
+    this.navCtrl.push(SignupPage);
+  }
 
 }

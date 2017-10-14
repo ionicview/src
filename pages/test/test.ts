@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides, AlertController, LoadingController, ViewController } from 'ionic-angular';
 import { Hint } from '../hint/hint';
 import { SolutionReflect } from '../solution-reflect/solution-reflect';
 import { Answer } from '../answer/answer';
 import { ToastController } from 'ionic-angular';
 import { QuestionService } from '../../service/QuestionService';
+import { EnvVariables } from '../../app/environment-variables/environment-variables.token';
 
 /**
 declare var require: any;
@@ -47,7 +48,8 @@ export class Test {
     public alertCtrl: AlertController,
     public viewCtrl: ViewController,
     public qsService: QuestionService,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    @Inject(EnvVariables) public envVariables
   ) {
     this.testId = navParams.get('testId');
     this.testName = navParams.get('testName');
@@ -81,7 +83,7 @@ export class Test {
   ngOnInit() {
     this.currentNumber = 1;
     this.currentQuestion = this.questionList[0];
-    console.log("STATUS:" + this.currentQuestion.status);
+
     //this.presentLoading();
   }
   ionViewDidLoad() {

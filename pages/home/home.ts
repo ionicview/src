@@ -1,50 +1,57 @@
-import { Component , Inject} from '@angular/core';
-import { NavController, NavParams,AlertController } from 'ionic-angular';
+import { Component, Inject } from '@angular/core';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { ChapterList } from '../chapter-list/chapter-list';
-import {MyBooksService} from '../../service/MyBooksService';
+import { MyBooksService } from '../../service/MyBooksService';
 import { EnvVariables } from '../../app/environment-variables/environment-variables.token';
-
+import { AuthProvider } from "../../providers/auth/auth";
+import { IMG_BASE_URL } from '../../config';
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+	selector: 'page-home',
+	templateUrl: 'home.html'
 })
 export class HomePage {
-//购买的书籍一览变量声明
-myBookList: any ;
-allBooks:Array<any>;
-img1:string;
-bottonStr:string;
-constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,public myBooksService:MyBooksService,@Inject(EnvVariables) public envVariables) {
-}
+	//购买的书籍一览变量声明
+	myBookList: any;
+	allBooks: Array<any>;
+	img1: string;
+	bottonStr: string;
+	imageBaseUrl: string;
+	constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public myBooksService: MyBooksService, private readonly authProvider: AuthProvider) {
+		this.imageBaseUrl = IMG_BASE_URL;
+	}
 
-//获取购买图书
-//TODO 后期将下载到本地
-searchBooks() {
-	this.myBooksService.getBooks().subscribe(
-		data => {
-				this.allBooks = data; 
+	//获取购买图书
+	//TODO 后期将下载到本地
+	searchBooks() {
+		this.myBooksService.getBooks().subscribe(
+			data => {
+				this.allBooks = data;
 				console.log(this.allBooks);
-		},
-		err => {
-			console.log(err);
-		},
-		() => {}
-	);
-} 
+			},
+			err => {
+				console.log(err);
+			},
+			() => { }
+		);
+	}
 
-ngOnInit(){
-	this.searchBooks()
-	this.img1 = this.myBooksService.img1;
-	this.bottonStr ="<button block >Test Button</button>"
-}
+	ngOnInit() {
+		this.searchBooks()
+		this.img1 = this.myBooksService.img1;
+	}
 
-//跳转到章一览画面
-goChapterList(book){
-  this.navCtrl.push(ChapterList,{
-       bookId:book.bookId,
-       bookName:book.bookName
-     });
-}
+	//跳转到章一览画面
+	goChapterList(book) {
+		this.navCtrl.push(ChapterList, {
+			bookId: book.bookId,
+			bookName: book.bookName
+		});
+	}
+
+	logout() {
+		this.authProvider.logout();
+
+	}
 
 
 }

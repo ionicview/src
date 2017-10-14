@@ -2,7 +2,9 @@ import {Injectable,Inject} from '@angular/core';
 import {Http,Headers,RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 import {Observable} from 'rxjs/Observable';
+import { JwtHelper, AuthHttp } from "angular2-jwt";
 import { EnvVariables } from '../app/environment-variables/environment-variables.token';
+import {SERVER_URL} from "../config";
 
 @Injectable()
 export class MyBooksService{
@@ -13,7 +15,7 @@ export class MyBooksService{
   data:any;
   img1:string;
   imgbookUrl:String;
-  constructor(http:Http,@Inject(EnvVariables) public envVariables){
+  constructor(http:Http,@Inject(EnvVariables) public envVariables,private readonly authHttp: AuthHttp){
    this.img1='<svg preserveAspectRatio="xMinYMin meet" viewBox="0 0 450 114" x="0px" y="10px" width="260px" height="180px"  >';
    this.img1+='<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" width="742.667" height="417.333" enable-background="new 0 0 742.67 417.33" xml:space="preserve">';
    this.img1+='<line fill="none" stroke-width="1.33333" stroke-linejoin="round" stroke="#000000" stroke-opacity="1" x1="162.52" y1="306.971" x2="313.701" y2="306.971"/>';
@@ -29,7 +31,7 @@ export class MyBooksService{
 
     this.http = http;
    // this.allBooks = null;
-    this.bookUrl = `${envVariables.baseUrl}/books`;
+    this.bookUrl = `${SERVER_URL}/books`;
     this.imgbookUrl='/youranxue/image/imageDisplay';
   }
 
@@ -44,12 +46,12 @@ export class MyBooksService{
   }
 
   getBooks(){
-    var response = this.http.get(`${this.bookUrl}/myBooks`).map(res => res.json());
+    var response = this.authHttp.get(`${SERVER_URL}/books/myBooks`).map(res => res.json());
     return  response ;
   }
 
   getChapter(bookId){
-    var response = this.http.get(`${this.bookUrl}/${bookId}`).map(res => res.json());
+    var response = this.authHttp.get(`${this.bookUrl}/${bookId}`).map(res => res.json());
     return  response ;
   }
 
