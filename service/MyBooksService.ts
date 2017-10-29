@@ -50,6 +50,16 @@ export class MyBooksService{
     return  response ;
   }
 
+
+  getAllBooks(){
+    var response = this.authHttp.get(`${SERVER_URL}/books/myBooks`).subscribe(
+      data=> this.allBooks = data,
+      err=>console.log(err),
+      ()=> console.log('Request Complete')
+    );
+    return  this.allBooks ;
+  }
+
   getChapter(bookId){
     var response = this.authHttp.get(`${this.bookUrl}/${bookId}`).map(res => res.json());
     return  response ;

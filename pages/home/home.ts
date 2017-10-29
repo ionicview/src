@@ -4,7 +4,9 @@ import { ChapterList } from '../chapter-list/chapter-list';
 import { MyBooksService } from '../../service/MyBooksService';
 import { EnvVariables } from '../../app/environment-variables/environment-variables.token';
 import { AuthProvider } from "../../providers/auth/auth";
-import { IMG_BASE_URL } from '../../config';
+import { JwtHelper, AuthHttp } from "angular2-jwt";
+import { IMG_BASE_URL, SERVER_URL } from '../../config';
+
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html'
@@ -16,7 +18,7 @@ export class HomePage {
 	img1: string;
 	bottonStr: string;
 	imageBaseUrl: string;
-	constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public myBooksService: MyBooksService, private readonly authProvider: AuthProvider) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public myBooksService: MyBooksService, private readonly authProvider: AuthProvider, private readonly authHttp: AuthHttp, ) {
 		this.imageBaseUrl = IMG_BASE_URL;
 	}
 

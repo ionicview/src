@@ -18,6 +18,8 @@ import { SignupPage } from "../signup/signup";
   templateUrl: 'login.html',
 })
 export class Login {
+  username:string;
+  password:string;
   loading: Loading;
   message: string;
   registerCredentials = { userId: '', password: '' };
@@ -28,6 +30,8 @@ export class Login {
     private readonly authProvider: AuthProvider,
     private readonly toastCtrl: ToastController,
   ) {
+    this.username = 'admin';
+    this.password = 'admin';
 //this.registerCredentials.userId = "wg";
 //this.registerCredentials.password= "wg";
 }
@@ -56,9 +60,13 @@ export class Login {
       () => { },
       err => this.handleError(err));
   }
+
   handleError(error: any) {
     let message: string;
+    
+    console.log("error.status:"+error);
     if (error.status && error.status === 401) {
+
       message = 'Login failed';
     }
     else {

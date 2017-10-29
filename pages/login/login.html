@@ -35,7 +35,7 @@
 
             <ion-item>
               <ion-label color="primary">用户名:</ion-label>
-              <ion-input [(ngModel)]="form.firstname" type="text" name="username" required #username="ngModel"  value="admin"></ion-input>
+              <ion-input [(ngModel)]="form.firstname" type="text" name="username" required #username="ngModel"  [class.invalid]="username.errors && username.dirty"></ion-input>
             </ion-item>
             <ion-item class="error-message" *ngIf="username.errors?.required && username.dirty">
               请输入用户名
@@ -43,7 +43,7 @@
 
             <ion-item>
               <ion-label color="primary">密　码:</ion-label>
-              <ion-input type="password" name="password" ngModel required #password="ngModel" [class.invalid]="password.errors && password.dirty" ng-value="admin">admin</ion-input>
+              <ion-input type="password" name="password" ngModel required #password="ngModel" [class.invalid]="password.errors && password.dirty" >admin</ion-input>
             </ion-item>
             <ion-item class="error-message" *ngIf="password.errors?.required && password.dirty">
               请输入密码
